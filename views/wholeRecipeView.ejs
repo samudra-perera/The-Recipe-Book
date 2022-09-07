@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Dashboard</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="container-wholeRecipeView">
+        <div class="nav">
+            <div class="nav-left">
+                <h1>THE RECIPE BOOK</h1>
+            </div>
+            <div class="nav-right">
+                <a class='createRecipes' href="/recipe">Dashboard</a>
+                <a class='findRecipes' href=''>Find Recipes</a>
+                <form action="/recipe/preSearchRecipe" method='POST' class="searchForm">
+                    <input type="hidden" name="_method" value="GET">
+                    <input type="text" placeholder="Search Recipes" name='searchRecipe' class="searchRecipe">
+                    <button type="submit" class="findRecipeButton">Find Recipes</button>
+                </form>
+
+                <a class='logout' href="/logout">Logout</a>
+            </div>   
+        </div>
+        <div class="wholeRecipe-card">
+            <ul>
+                <li class='recipeItem' data-id='<%=recipe._id%>'>
+                  <span class='recipeTitle'><%= recipe.title%></span>
+                  <img  class='recipeImage' src='https://source.unsplash.com/1600x900/?<%= recipe.image%>' alt='Recipe Image'>
+                  <span class='recipeIngredients'><%= recipe.ingredients%></span>
+                  <span class='recipeTime'><%= recipe.time%></span>
+                  <span class='recipeCalories'><%= recipe.cals%></span>
+                  <span class='recipeInstructions'><%= recipe.instructions%></span>
+                  <span class="recipeLikesCount"><%=recipe.likesCount%></span>
+                  <% if(user.id === recipe.userId) { %>
+                    <a class='deleteRecipe'>Delete</a>
+                    <a class='editRecipe' href="recipe/editRecipe/<%=recipe._id%>">Edit</a>
+                  <% } %>
+                  <% if (!recipe.likedBy.includes(user.id)) {%>
+                      <% console.log(user,recipe.likedBy) %>
+                      <form action="../../recipe/likeRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
+                        <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
+                        <button type="submit" class="likeRecipe">
+                          Like
+                        </button>
+                      </form>
+                  <% } else {%>
+                    <form action="../../recipe/unlikeRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
+                      <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
+                      <button type="submit" class="unlikeRecipe">
+                        Unlike
+                      </button>
+                      </form>
+                  <% } %>
+                </li>  
+        </ul>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

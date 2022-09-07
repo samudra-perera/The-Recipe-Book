@@ -1,0 +1,43 @@
+// Seperate view to create recipes 
+//This one will have the forms with no information
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Add your recipe below</h1>
+  
+    <div class="row">
+        <div class='column'>
+    <form action="/recipe/createRecipe" method='POST'>
+        <div class='column'>
+        <textarea placeholder="Name this Recipe" name='recipeTitle'></textarea></div>
+        <div class="column">
+        <textarea placeholder="Images & Links" name='recipeImage'></textarea></div>
+        <div class="column">
+        <textarea placeholder="Prep/Cook time" name='recipeTime'></textarea></div>
+        <div class="column">
+        <textarea placeholder="Cal per serving" name='recipeCals'></textarea></div>
+        <div class="column">
+        <textarea placeholder="Add your ingredients" name='recipreIng'></textarea></div>
+        <div class="column">
+        <textarea placeholder="Add your instructions" name='recipeInstr'></textarea></div>
+    </div>
+</div>
+        <select id="isPublic" name="isPublic">
+          <option value="false">Private</option>
+          <option value="true">Public</option>
+        </select>
+        <input type="submit">
+        <a href="/recipe">Cancel</a>
+    </form>
+    <a href="/logout">Logout</a>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

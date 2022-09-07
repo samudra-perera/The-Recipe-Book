@@ -1,16 +1,45 @@
 # Introduction
 
-A Simple ToDo App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
+A Simple RecipeBook App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
+
+
 
 ---
-
 > Be sure to add that lovely star 😀 and fork it for your own copy
+>
+> Create a Recipe
+> I was thinking for the updating recipe we have seperate route/view for each of the creation section, instead of the form being on the 
+
+> Add a recipe (Button on homepage that takes you to a seperate view.ejs that is meant for the CRUD portion)
+  > 1. Add title
+  > 2. add Image (not necessary)
+  > 3. Add instructions
+  > 4. Add ingredients
+  > 5. Option to make the recipe private of public (simple boolean would work here --> isPrivate: False) ... then can search database for all the recipes that aren't false and display those on the public feed
+> Update recipe
+   - Sends you back to the view.ejs that the user initially used to fill in the recipe and lets the user edit all the necessary fields except the button at the bottom says 'update recipe' instead of 'create recipe.'
+
+> Delete recipe
+  >Simple Delete button on recipe cards
+>
+>
+> Comment
+> like a recipe
+> save to favourites
+> tag recipes
+>
+>
+> --Tasks to do
+> search for recipes
+  >  If user does not have an image we can use the unsplash API to generate an image based on the type of food they are submitting a recipe for (ie pasta)
 
 ---
 
 # Objectives
 
-- It's a beginner level app created to understand how MVC concept and logins are added
+- User login and creation
+- Recipe creation and deletion
+- Recipe search functionality
 
 ---
 

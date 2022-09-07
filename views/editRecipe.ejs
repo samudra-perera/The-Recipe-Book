@@ -1,0 +1,44 @@
+//Seperate view for the update
+//This one will have the information from the DB prefilled and allow the user to rewrite that information
+//Tentative View -- Could be a mechanism to reRoute to createRecipe and populate with the DB infomation preloaded
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Edit your recipe below</h1>
+  
+    <form action="/recipe/editRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
+        <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
+        <input type="text" placeholder="add your title" name='recipeTitle' value="<%=recipe.title%>">
+        <input type="text" placeholder="tag for images" name='recipeImage' value="<%=recipe.image%>">
+        <input type="text" placeholder="Time" name='recipeTime' value="<%=recipe.time%>">
+        <input type="text" placeholder="Cal per serving" name='recipeCals' value="<%=recipe.cals%>">
+        <input type="text" placeholder="add your ingredients" name='recipreIng' value="<%=recipe.ingredients%>">
+        <input type="text" placeholder="add your instructions" name='recipeInstr' value="<%=recipe.instructions%>">
+        <select id="isPublic" name="isPublic">
+          <% if(recipe.isPublic) { %>
+            <option value="false">Private</option>
+            <option value="true" selected>Public</option>
+          <% } else { %>
+            <option value="false" selected>Private</option>
+            <option value="true">Public</option>
+          <% } %>
+        </select>
+        <input type="submit">
+        <a href="/recipe">Cancel</a>
+    </form>
+
+
+
+    <a href="/logout">Logout</a>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

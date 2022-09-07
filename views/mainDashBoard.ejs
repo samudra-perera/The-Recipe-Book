@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Dashboard</title>
+	  <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container-mainDashboard">
+        <div class="nav">
+            <div class="nav-left">
+                <h1>THE RECIPE BOOK</h1>
+            </div>
+            <div class="nav-right">
+                <a class='createRecipes' href="recipe/createRecipe">Create Recipes</a>
+                <form action="/recipe/preSearchRecipe" method='POST' class="searchForm">
+                    <input type="hidden" name="_method" value="GET">
+                    <input type="text" placeholder="Search Recipes" name='searchRecipe' class="searchRecipe">
+                    <button type="submit" class="findRecipeButton">Find Recipes</button>
+                </form>
+                <a class='logout' href="/logout">Logout</a>
+            </div>   
+        </div>
+        <div class="recipeCards">
+            <div class="user-recipe-card-container">
+                <h2 class="userNameHeading">User's Recipes</h2>
+                <% recipes.forEach( el => { %>
+                    <div class="recipeCard" data-id='<%=el._id%>'>
+                        <div class="recipeQuickInfo">
+                            <a class='recipeTitle'><%= el.title%></a>
+                            <span class='recipeTime'><%= el.time%></span>
+                            <span class="recipeCals"><%= el.cals%></span>
+                            <span class="recipeLikesCount"><%=el.likesCount%></span>
+                        </div>
+                        
+                        <div class="editAndDelete">
+                            <a class='deleteRecipe'>Delete</a>
+                            <a class='editRecipe' href="recipe/editRecipe/<%=el._id%>">Edit</a>
+                            <a class='viewRecipe' href="recipe/wholeRecipeView/<%=el._id%>">View</a>
+                        </div>
+                    </div>
+                <% }) %> 
+            </div>
+    
+            <div class="liked-recipe-card-container">
+                <h2 class="userNameHeading">Liked Recipes</h2>
+                <% likedRecipes.forEach( el => { %>
+                    <div class="recipeCard" data-id='<%=el._id%>'>
+                        <div class="recipeQuickInfo">
+                            <a class='recipeTitle'><%= el.title%></a>
+                            <span class='recipeTime'><%= el.time%></span>
+                            <span class="recipeCals"><%= el.cals%></span>
+                            <span class="recipeLikesCount"><%= el.likesCount%></span>
+                        </div>
+                        
+                        <div class="editAndDelete">
+                            <% if (el.userId === user.id) { %>
+                                <a class='deleteRecipe'>Delete</a>
+                                <a class='editRecipe' href="recipe/editRecipe/<%=el._id%>">Edit</a>
+                            <% } %>
+                          <a class='viewRecipe' href="recipe/wholeRecipeView/<%=el._id%>">View</a>
+                          <form action="recipe/unlikeRecipe/<%=el._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
+                            <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
+                            <button type="submit" class="unlikeRecipe">
+                              Unlike
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>  
+            </div>
+        </div>
+
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>
