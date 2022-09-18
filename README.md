@@ -83,6 +83,10 @@ Building this project taught me a lot about fullstack development and working wi
 
 5. Since NodeJS does not have a way to handle PUT requests from forms, we used the method override package to modify the POST methods overridden as PUT methods. 
 
+## Contributors
+
+- Shravan KS (https://github.com/devshrav)
+
 ## Recent Projects:
 Take a look at some of my other portfolio projects:
 
