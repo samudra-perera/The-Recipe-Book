@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400&display=swap" rel="stylesheet">  
     <title>Sign Up</title>
 </head>
 <body>
@@ -17,46 +11,31 @@
         <% messages.errors.forEach( el => { %>
             <div class="alert alert-danger"><%= el.msg %></div>
         <% }) %>    
-    <% } %>
- <!--   <div class="bigContainer">
-        <div class="container sign-up">
-            <div class="form-container">
-                <h2 class="sign-up-h2">Please fill in the information below to create an account!</h2>
+    <% } %>    
+
+</body>
+</html>
+
+<!-- <div class="bigContainer">
+    <div class="logo">
+         <img src="/images/logo.png" alt="">
+    </div>
+    <div class="container-sign-up">
+        <div class="form-container">
+            
+           <h2 class="sign-up-h2">Please fill in the information below to create an account!</h2>
+            <div class="sign-up-form">
                 <form action="/signup" method="POST">
                     <input type="text" name="userName" placeholder="User Name">
                     <input type="email" name="email" placeholder="Email">
                     <input type="password" name="password" placeholder="Password">
                     <input type="password" name="confirmPassword" placeholder="Confirm Password">
-                    <input type="submit" class="button-style" value="SUBMIT">
+                    <div class="button-style">
+                       <input type="submit" class="sign-up-button" value="SUBMIT">
+                    </div>
                 </form>
             </div>
-        </div>
+          </div>
     </div>
-</body>
-</html> -->
-      
-<div class="bigContainer">
-        <div class="logo">
-             <img src="/images/logo.png" alt="">
-        </div>
-        <div class="container-sign-up">
-            <div class="form-container">
-                
-               <h2 class="sign-up-h2">Please fill in the information below to create an account!</h2>
-                <div class="sign-up-form">
-                    <form action="/signup" method="POST">
-                        <input type="text" name="userName" placeholder="User Name">
-                        <input type="email" name="email" placeholder="Email">
-                        <input type="password" name="password" placeholder="Password">
-                        <input type="password" name="confirmPassword" placeholder="Confirm Password">
-                        <div class="button-style">
-                           <input type="submit" class="sign-up-button" value="SUBMIT">
-                        </div>
-                    </form>
-                </div>
-              </div>
-        </div>
-    </div> 
-</body>
-    </html>
+</div>  -->
   
