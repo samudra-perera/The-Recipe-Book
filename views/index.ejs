@@ -4,60 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400&display=swap" rel="stylesheet">  
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Landing Page</title>
 </head>
-<body>
-  <!-- create two columns, one that has an login/sign up portal and one that has a logo and application description as per wireframe #1 -->
- <!-- <div class="container">
-	<div class='col1'>
-		<div class="col1-landing-page">
-			<div class="col1-landing-page-container">
-				<h1>Create and find recipes online!</h1>
-				<img src='/images/logo.png' alt='landing page image'/>
+<body class="bg-light text-dark p-5 text-center mh-100">
+		<div class="container col-xl-10 col-xxl-8 px-2 py-3">
+			<div class="d-sm-flex row-reverse align-items-center justify-content-around">
+				<img class="img-fluid w-50" src="/images/green-index.jpeg" alt="Collard Greens">
+				<div class="col">
+					<h1>The <span class="text-success">Recipe Book</span></h1>
+					<p>
+						Join The Recipe Book to create and save your personal recipes.<br>
+						Find the recipes you love and add them to your favourites so you can try them out later!
+					</p>
+					<div class="d-flex flex-column align-items-center">
+						<a href="/login" class='btn btn-success btn-md w-20 mb-2'> Login</a>
+						<p class="font-weight-bold mb-0">Don't have an account? Sign up below.</p>
+						<a href="/signup" class='btn btn-success btn-md w-20 mb-2'> Sign Up</a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class='col2'>
-	  <div class='col2-container'>
-		<div class="col2-continaer-buttons">
-			<a href="/login" class='btn login'> Login</a>
-			<a href="/signup" class='btn signup'> Signup</a>
-		</div>
-	  </div>
-	</div>
-  </div>
-</body>
-</html>
--->
-<!-- create two columns, one that has an login/sign up portal and one that has a logo and application description as per wireframe #1 -->
-  <div class="main-container">
-	<div class="logo">
-		<img src="/images/logo.png" alt="">
-   </div>
-	<div class='col1'>
-		<div class="col1-landing-page">
-			<div class="col1-landing-page-container">
-				<h1>Create and find recipes online!</h1>
-			
-			</div>
-		</div>
-	</div>
-	<div class='col2'>
-	  <div class='col2-container'>
-		<div class="col2-continaer-buttons">
-			<a href="/login" class='btn login'> Login</a>
-			<a href="/signup" class='btn signup'> Sign Up</a>
-		</div>
-	  </div>
-	</div>
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
   
 
+<!-- <div class="container d-flex align-items-center justify-content-center h-60">
+	<div class="d-flex align-items-center">
+		<div class="col">
+			<img class="img-fluid w-100" src="/images/green-index.jpeg" alt="Collard Greens">
+		</div>
+		<div class="col flex-column">
+			<h1 class="text-success d-flex justify-content-center">Create and find recipes online!</h1>
+			<div class="col flex-column align-items-center">
+				<div class="col d-flex justify-content-center">
+					<a href="/login" class='btn alig'> Login</a>
+				</div>
+				<div class="col d-flex justify-content-center">
+					<a href="/signup" class='btn'> Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div> -->
