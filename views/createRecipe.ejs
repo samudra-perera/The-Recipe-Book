@@ -1,43 +1,58 @@
-// Seperate view to create recipes 
-//This one will have the forms with no information
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Create Recipe</title>
-    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Add your recipe below</h1>
-  
-    <div class="row">
-        <div class='column'>
-    <form action="/recipe/createRecipe" method='POST'>
-        <div class='column'>
-        <textarea placeholder="Name this Recipe" name='recipeTitle'></textarea></div>
-        <div class="column">
-        <textarea placeholder="Images & Links" name='recipeImage'></textarea></div>
-        <div class="column">
-        <textarea placeholder="Prep/Cook time" name='recipeTime'></textarea></div>
-        <div class="column">
-        <textarea placeholder="Cal per serving" name='recipeCals'></textarea></div>
-        <div class="column">
-        <textarea placeholder="Add your ingredients" name='recipreIng'></textarea></div>
-        <div class="column">
-        <textarea placeholder="Add your instructions" name='recipeInstr'></textarea></div>
-    </div>
-</div>
-        <select id="isPublic" name="isPublic">
-          <option value="false">Private</option>
-          <option value="true">Public</option>
-        </select>
-        <input type="submit">
-        <a href="/recipe">Cancel</a>
-    </form>
-    <a href="/logout">Logout</a>
+    <div class="container my-5">
+        <h1>Create your recipe below</h1>
+        <form class="was-validated" action="/recipe/createRecipe" method='POST'>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name you Recipe</label>
+                <input type="text" class="form-control" name='recipeTitle' id="exampleFormControlInput1" placeholder="Add your title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tag your image</label>
+                <input type="text" class="form-control" name='recipeImage' id="exampleFormControlInput1" placeholder="Single word to describe the recipe" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Select Recipe Privacy</label>
+                <select class="form-select" aria-label="select example" id="isPublic" name="isPublic" required>
+                    <option value="false">Private</option>
+                    <option value="true">Public</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">ingredients</label>
+                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Add your ingredients for your recipe" name='recipreIng' required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Cooking Instructions</label>
+                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Write the instructions down for your recipe including # of Servings" name='recipeInstr' rows="7" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Prep Time</label>
+                <input type="text" class="form-control" name='recipeTime' placeholder="Egs: 40 mins or 1 hour">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Calories per serving</label>
+                <input type="text" class="form-control" name='recipeCals' id="exampleFormControlInput1" placeholder="Egs: 150 cals">
+            </div>
+    
+            <div class="mb-3">
+              <input class="btn btn-primary" type="submit">
+              <a class="btn btn-primary" href="/recipe">Back</a>
+              <a class="btn btn-primary" href="/logout">Logout</a>
+            </div>
+          </form>
+    
 
-    <script src="/js/main.js"></script>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
