@@ -13,12 +13,13 @@
     />
   </head>
   <body>
+    <!-- This is the navigation bar -->
     <nav
       class="navbar navbar-expand-sm navbar-dark bg-dark"
       aria-label="Third navbar example"
     >
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">THE RECIPE BOOK</a>
+        <a class="navbar-brand" href="/recipe">THE RECIPE BOOK</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -64,130 +65,68 @@
       </div>
     </nav>
 
+    <!-- This is the User Recipe Column -->
     <div class="row mb-2">
       <div class="col-md-6">
-        <h1>User's Recipes</h1>
+        <h1 class="text-center">User's Recipes</h1>
         <% recipes.forEach( el => { %>
         <div
           class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
           data-id="<%=el._id%>"
         >
           <div class="col p-3 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success"><%= el.cals%> cals</strong>
             <h3 class="mb-0"><%= el.title%></h3>
-            <div class="mb-1 text-muted"><%= el.time%></div>
-            <span class="recipeCals"><%= el.cals%> cals</span>
-            <span class="recipeLikesCount"><%=el.likesCount%></span>
+            <div class="control-group">
+              <div class="mb-1 text-muted"><%= el.time%></div>
+              <span class="mb-1 text-muted"><%=el.likesCount%> likes</span>
+            </div>
           </div>
           <div class="control-group">
-            <div class="controls align-right">
-              <a href='#' class="deleteRecipe">Delete</a>
-              <a href="recipe/editRecipe/<%=el._id%>">Edit</a>
-              <a href="recipe/wholeRecipeView/<%=el._id%>">View</a>
+            <div class="controls align-right" data-id="<%=el._id%>">
+              <a href="#" class="btn btn-danger deleteRecipe m-1 mb-2">Delete</a>
+              <a href="recipe/editRecipe/<%=el._id%>" class="btn btn-warning m-1 mb-2">Edit</a>
+              <a class="btn btn-success m-1 mb-2" href="recipe/wholeRecipeView/<%=el._id%>">View</a>
             </div>
           </div>
-          <!-- <div class="editAndDelete">
-            <a class="deleteRecipe">Delete</a>
-            <a class="editRecipe" href="recipe/editRecipe/<%=el._id%>">Edit</a>
-            <a class="viewRecipe" href="recipe/wholeRecipeView/<%=el._id%>"
-              >View</a
-            >
-          </div> -->
         </div>
         <% }) %>
-        <div
-          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div class="col p-3 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">World</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content.
-            </p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-        </div>
       </div>
+
+      <!-- This is the liked Recipes Column -->
       <div class="col-md-6">
-        <h1>Liked Recipes</h1>
-        <div
-          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div class="col p-3 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">Post title</h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content.
-            </p>
-            <div class="control-group">
-              <div class="controls align-right">
-                <a href="#" class="stretched-link">Like</a>
-                <a href="#" class="stretched-link">Like</a>
+        <h1 class="text-center">Liked Recipes</h1>
+        <% likedRecipes.forEach( el => { %>
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-id="<%=el._id%>">
+              <div class="col p-3 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success"><%= el.cals%> cals</strong>
+                <h3 class="mb-0"><%= el.title%></h3>
+                <div class="control-group">
+                    <div class="mb-1 text-muted"><%= el.time%></div>
+                    <span class="mb-1 text-muted"><%=el.likesCount%> likes</span>
+                  </div>
+              </div>
+    
+              <div class="control-group" style="display: flex;">
+                <% if (el.userId === user.id) { %>
+                    <a href="#" class="btn btn-danger  m-1 mb-2">Delete</a>
+                    <a href="recipe/editRecipe/<%=el._id%>" class="btn btn-warning  m-1 mb-2">Edit</a>
+                <% } %>
+                <a class="btn btn-success m-1 mb-2" href="recipe/wholeRecipeView/<%=el._id%>">View</a>
+                <form action="recipe/unlikeRecipe/<%=el._id%>" method="POST">
+                  <!--POST gets overridden with PUT when methodOverride is used -->
+                  <input
+                    type="hidden"
+                    name="_method"
+                    value="PUT"
+                  /><!--PUT method override-->
+                  <button type="submit" class="btn btn-primary m-1 mb-2">Unlike</button>
+                </form>
               </div>
             </div>
-          </div>
-        </div>
+            <% }) %>
       </div>
     </div>
-
-    <div class="recipeCards">
-      <div class="user-recipe-card-container">
-        <h2 class="userNameHeading">User's Recipes</h2>
-        <% recipes.forEach( el => { %>
-        <div class="recipeCard" data-id="<%=el._id%>">
-          <div class="recipeQuickInfo">
-            <a class="recipeTitle"><%= el.title%></a>
-            <span class="recipeTime"><%= el.time%></span>
-            <span class="recipeCals"><%= el.cals%></span>
-            <span class="recipeLikesCount"><%=el.likesCount%></span>
-          </div>
-
-          <div class="editAndDelete">
-            <a class="deleteRecipe">Delete</a>
-            <a class="editRecipe" href="recipe/editRecipe/<%=el._id%>">Edit</a>
-            <a class="viewRecipe" href="recipe/wholeRecipeView/<%=el._id%>"
-              >View</a
-            >
-          </div>
-        </div>
-        <% }) %>
-      </div>
-
-      <div class="liked-recipe-card-container">
-        <h2 class="userNameHeading">Liked Recipes</h2>
-        <% likedRecipes.forEach( el => { %>
-        <div class="recipeCard" data-id="<%=el._id%>">
-          <div class="recipeQuickInfo">
-            <a class="recipeTitle"><%= el.title%></a>
-            <span class="recipeTime"><%= el.time%></span>
-            <span class="recipeCals"><%= el.cals%></span>
-            <span class="recipeLikesCount"><%= el.likesCount%></span>
-          </div>
-
-          <div class="editAndDelete">
-            <% if (el.userId === user.id) { %>
-            <a class="deleteRecipe">Delete</a>
-            <a class="editRecipe" href="recipe/editRecipe/<%=el._id%>">Edit</a>
-            <% } %>
-            <a class="viewRecipe" href="recipe/wholeRecipeView/<%=el._id%>"
-              >View</a
-            >
-            <form action="recipe/unlikeRecipe/<%=el._id%>" method="POST">
-              <!--POST gets overridden with PUT when methodOverride is used -->
-              <input
-                type="hidden"
-                name="_method"
-                value="PUT"
-              /><!--PUT method override-->
-              <button type="submit" class="unlikeRecipe">Unlike</button>
-            </form>
-          </div>
-        </div>
-        <% }) %>
-      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

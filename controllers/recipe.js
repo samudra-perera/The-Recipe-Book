@@ -52,7 +52,8 @@ module.exports = {
     try {
       await Recipe.findOneAndDelete({ _id: req.body.recipeIdFromJSFile }) //Look to see if this needs to be changed
       console.log('Deleted Recipe')
-      res.json('Deleted It')
+      console.log({ _id: req.body.recipeIdFromJSFile })
+      // res.json('Deleted It')
     } catch (err) {
       console.log(err)
     }

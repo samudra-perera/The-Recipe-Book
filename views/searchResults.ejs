@@ -4,76 +4,109 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+    crossorigin="anonymous"
+  />
     <title>Recipe Dashboard</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+        <!-- This is the navigation bar -->
+        <nav
+        class="navbar navbar-expand-sm navbar-dark bg-dark"
+        aria-label="Third navbar example"
+      >
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Search Results</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="/recipe">THE RECIPE BOOK</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample03"
+            aria-controls="navbarsExample03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
-    
           <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../../recipe">Dashboard</a>
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="recipe/createRecipe"
+                  >Create Recipe</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/logout">Log out</a>
+                <a class="nav-link" href="/logout">Log Out</a>
               </li>
             </ul>
-            <form role="search" action="/recipe/preSearchRecipe" method='POST'>
-                <input type="hidden" name="_method" value="GET">
-                <input class="form-control" type="text" placeholder="Search Recipes" name='searchRecipe' aria-label="Search">
-                <button type="submit" class="findRecipeButton">Find Recipes</button>
+            <form
+              role="search"
+              action="/recipe/preSearchRecipe"
+              method="POST"
+              class="d-flex"
+            >
+              <input type="hidden" name="_method" value="GET" />
+              <input
+                type="search"
+                placeholder="Search Recipes"
+                name="searchRecipe"
+                class="form-control me-2"
+                aria-label="Search"
+              />
+              <button type="submit" class="btn btn-secondary">Search</button>
             </form>
           </div>
         </div>
       </nav>
 
+      <!-- Search Results Container -->
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="user-recipe-card-container">
+                <h2 class="text-center">Search Results</h2>
+                <% recipes.forEach( recipe => { %>
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-id='<%=recipe._id%>'>
+                        <div class="col p-3 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-success"><%= recipe.cals%> cals</strong>
+                            <h2 class="mb-0"><%= recipe.title%></h2>
+                            <div class="mb-1 text-muted"><%= recipe.time%></div>
+                            <span class="recipeLikesCount"><%=recipe.likesCount%></span>
+                        </div>
+                        <div class="control-group" style="display: flex;">
+                            <% if(user.id === recipe.userId) { %>
+                                <a class="btn btn-danger m-1 mb-2">Delete</a>
+                                <a class="btn btn-warning m-1 mb-2" href="../../recipe/editRecipe/<%=recipe._id%>">Edit</a>
+                            <% } %>
+                                <a class="btn btn-success m-1 mb-2" href="../../recipe/wholeRecipeView/<%=recipe._id%>">View</a>
+                            <% if (!recipe.likedBy.includes(user.id)) {%>
+                                <form action="/recipe/likeRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
+                                <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
+                                    <button type="submit" class="btn btn-primary m-1 mb-2">
+                                    Like
+                                    </button>
+                                </form>
+                            <% } else {%>
+                                <form action="/recipe/unlikeRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
+                                <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
+                                <button type="submit" class="btn btn-primary m-1 mb-2">
+                                    Unlike
+                                </button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %> 
+            </div>
+       </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>
 
-<div class="container-mainDashboard">
-    <div class="recipeCards">
-        <div class="user-recipe-card-container">
-            <h2 class="userNameHeading">Search Results</h2>
-            <% recipes.forEach( recipe => { %>
-                <div class="recipeCard" data-id='<%=recipe._id%>'>
-                    <div class="recipeQuickInfo">
-                        <a class='recipeTitle'><%= recipe.title%></a>
-                        <span class='recipeTime'><%= recipe.time%></span>
-                        <span class="recipeCals"><%= recipe.cals%></span>
-                        <span class="recipeLikesCount"><%=recipe.likesCount%></span>
-                    </div>
-                    <div class="editAndDelete">
-                        <% if(user.id === recipe.userId) { %>
-                            <a class='deleteRecipe'>Delete</a>
-                            <a class='editRecipe' href="../../recipe/editRecipe/<%=recipe._id%>">Edit</a>
-                        <% } %>
-                            <a class='viewRecipe' href="../../recipe/wholeRecipeView/<%=recipe._id%>">View</a>
-                        <% if (!recipe.likedBy.includes(user.id)) {%>
-                            <form action="/recipe/likeRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
-                            <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
-                                <button type="submit" class="likeRecipe">
-                                Like
-                                </button>
-                            </form>
-                        <% } else {%>
-                            <form action="/recipe/unlikeRecipe/<%=recipe._id%>" method='POST'><!--POST gets overridden with PUT when methodOverride is used -->
-                            <input type="hidden" name="_method" value="PUT"><!--PUT method override-->
-                            <button type="submit" class="unlikeRecipe">
-                                Unlike
-                            </button>
-                            </form>
-                        <% } %>
-                    </div>
-                </div>
-            <% }) %> 
-        </div>
-   </div>
-</div>
