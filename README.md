@@ -55,7 +55,7 @@ The server side of the application is built using NodeJS and ExpressJS to handle
 
 After completing the project there are some optimization we would do. 
 
-1. Due to the time constraints the styling had to take a back seat to the functionality (Styling Work in Progress)> **UPDATE: Jan 16/23:** All the styling is now completed using Bootstrap and the website looks great!  
+1. Due to the time constraints the styling had to take a back seat to the functionality (Styling Work in Progress). **UPDATE: Jan 16/23:** All the styling is now completed using Bootstrap and the website looks great!  
 
 2. Giving the search functionality its own routes and controllers to reduce the complexity of the recipes controllers
 
