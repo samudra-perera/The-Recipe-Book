@@ -8,16 +8,16 @@ The majority of this application (a working MVP) was built over 4 days with the 
 
 This project was built using Leon Noel's MVC template. The link to that project can be seen here: https://github.com/100devs/todo-mvc-auth-local.
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** https://therecipebook.cyclic.app/
 
-![alt tag](http://placecorgi.com/1200/650)
+![The Recipe Landing Page](https://res.cloudinary.com/dkrjwbr8w/image/upload/v1673921913/Screen_Shot_2023-01-16_at_9.18.12_PM_zo8wph.png)
 
 ## Application Goals
 
 - User login and creation
 - Creating, editing and deleting recipes
 - Recipe search functionality
-- Adding recipes to likes 
+- Adding recipes to a list of likes
 
 ## Installation
 
@@ -39,13 +39,13 @@ To run the application, in your terminal use the following command and go to loc
 node server
 ```
  
- ## How It's Made:
+## How It's Made:
 
 **Tech used:** HTML, CSS, BootStrap, JavaScript, Embedded JavaScript(EJS), NodeJS, ExpressJS, and MongoDB
 
 **Client Side**
 
-The front end of this application is being rendered by the templating language EJS. The EJS is rendered using the database information as inputs. We have used for loops and forEach array methods to iterate through the database responses and render the information to the EJS templates.
+The front end of this application is being rendered by the templating language EJS. The EJS is rendered using the database information as inputs. We have used for loops and forEach array methods to iterate through the database responses and render the information to the EJS templates. The front end styling was done using BootStrap and Bootstrap components.
 
 **Server Side**
 
@@ -55,7 +55,7 @@ The server side of the application is built using NodeJS and ExpressJS to handle
 
 After completing the project there are some optimization we would do. 
 
-1. Due to the time constraints the styling had to take a back seat to the functionality (Styling Work in Progress)
+1. Due to the time constraints the styling had to take a back seat to the functionality (Styling Work in Progress)> **UPDATE: Jan 16/23:** All the styling is now completed using Bootstrap and the website looks great!  
 
 2. Giving the search functionality its own routes and controllers to reduce the complexity of the recipes controllers
 
@@ -63,11 +63,11 @@ After completing the project there are some optimization we would do.
 
 Some additional things I would have liked to add were: 
 
-1. Adding the ability for users to add their own photographs to the recipe. We would have achieved this using cloudinary and their photo upload API. 
+1. Adding the ability for users to add their own photographs to the recipe. We would have achieved this using cloudinary to store the photographs and multer as the middleware to handle the photo upload.
 
 2. Adding the ability for users to follow each other, creating a "social media" recipe sharing application
 
-3. Using ReactJS as the client side language instead of EJS
+3. Using ReactJS as the front-end framework instead of using a templating language like EJS. Breaking apart the application into components would have made it easier to add functionality to specific sections without updating entire views. 
 
 
 ## Lessons Learned:
@@ -90,7 +90,7 @@ Building this project taught me a lot about fullstack development and working wi
 ## Recent Projects:
 Take a look at some of my other portfolio projects:
 
-**Just Journal:** https://github.com/samudra-perera/Journal-App-Full-Stack
+**Just Journal:** https://github.com/samudra-perera/JustJournal
 
 **To Do List** https://github.com/samudra-perera/To-Do-LIst-CRUD-App
 
